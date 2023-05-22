@@ -13,13 +13,13 @@ import javax.persistence.ManyToOne
 @Entity
 data class Recipe(
     @Column(nullable = false)
-    val name : String,
+    val name: String,
     @Column(nullable = false)
-    val thumbnail : String,
+    val thumbnail: String,
     @Column(nullable = false, name = "count_likes")
-    val countLikes : Long,
+    val countLikes: Long,
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    val user : User
+    val user: User
 ):BaseIdEntity()

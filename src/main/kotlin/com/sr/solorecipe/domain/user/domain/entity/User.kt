@@ -7,9 +7,9 @@ import javax.persistence.Entity
 @Entity
 data class User(
     @Column(nullable = false)
-    val email : String,
+    val email: String,
     @Column(nullable = false)
-    val password : String,
+    val password: String,
     @Column(nullable = false)
-    val nickname : String
+    val nickname: String
 ): BaseIdEntity()

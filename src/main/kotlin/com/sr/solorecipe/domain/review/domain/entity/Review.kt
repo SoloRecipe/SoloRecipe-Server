@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne
 @Entity
 data class Review(
     @Column(nullable = false)
-    val content : String,
+    val content: String,
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
