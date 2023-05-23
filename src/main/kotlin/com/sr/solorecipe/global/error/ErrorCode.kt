@@ -4,5 +4,9 @@ enum class ErrorCode(
     val message: String,
     val status: Int
 ) {
+    EXPIRED_TOKEN("만료된 토큰 입니다.", 401),
+    UNAUTHORIZED("권함이 없습니다.",401),
+
+
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
 }
