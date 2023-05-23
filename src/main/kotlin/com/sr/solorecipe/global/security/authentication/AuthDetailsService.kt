@@ -1,6 +1,7 @@
 package com.sr.solorecipe.global.security.authentication
 
 import com.sr.solorecipe.domain.user.domain.repository.UserRepository
+import com.sr.solorecipe.domain.user.exception.UserNotFoundException
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
