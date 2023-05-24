@@ -17,7 +17,7 @@ class SignUpServiceImpl(
     override fun signUp(signUpDto: SignUpDto) {
         if(userRepository.existsByEmail(signUpDto.email))
             throw DuplicatedEmailException()
-        else if(userRepository.existsByNickname(signUpDto.nickname))
+        if(userRepository.existsByNickname(signUpDto.nickname))
             throw DuplicatedNicknameException()
 
         val user = authConverter.toEntity(signUpDto)
