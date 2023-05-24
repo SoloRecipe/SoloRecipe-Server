@@ -12,5 +12,8 @@ enum class ErrorCode(
 
 
 
+    DUPLICATED_EMAIL("이미 존재하는 이메일입니다.", 409),
+    DUPLICATED_NICKNAME("이미 존재하는 닉네임입니다.", 409),
+
     INTERNAL_SERVER_ERROR("서버에 문제가 발생했습니다.", 500),
 }
