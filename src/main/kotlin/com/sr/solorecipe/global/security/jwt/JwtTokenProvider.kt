@@ -81,8 +81,8 @@ class JwtTokenProvider(
     }
 
     private fun getKeyByTokenType(tokenType: TokenType): Key =
-        if (tokenType == TokenType.ACCESS_TOKEN) jwtProperties.accessToken
-        else jwtProperties.refreshToken
+        if (tokenType == TokenType.ACCESS_TOKEN) jwtProperties.accessSecret
+        else jwtProperties.refreshSecret
 
     private fun getTokenExpiredTime(tokenType: TokenType): Long =
         if (tokenType == TokenType.ACCESS_TOKEN) ACCESS_TOKEN_EXPIRED_TIME

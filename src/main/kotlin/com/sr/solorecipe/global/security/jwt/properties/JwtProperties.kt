@@ -9,14 +9,14 @@ import java.security.Key
 @ConstructorBinding
 @ConfigurationProperties(prefix = "jwt")
 class JwtProperties(
-    accessToken: String,
-    refreshToken: String
+    accessSecret: String,
+    refreshSecret: String
 ){
-    val accessToken: Key
-    val refreshToken: Key
+    val accessSecret: Key
+    val refreshSecret: Key
 
     init {
-        this.accessToken = Keys.hmacShaKeyFor(accessToken.toByteArray(StandardCharsets.UTF_8))
-        this.refreshToken = Keys.hmacShaKeyFor(refreshToken.toByteArray(StandardCharsets.UTF_8))
+        this.accessSecret = Keys.hmacShaKeyFor(accessSecret.toByteArray(StandardCharsets.UTF_8))
+        this.refreshSecret = Keys.hmacShaKeyFor(refreshSecret.toByteArray(StandardCharsets.UTF_8))
     }
 }
