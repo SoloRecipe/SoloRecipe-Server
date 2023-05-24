@@ -1,6 +1,7 @@
-package com.sr.solorecipe.global.security
+package com.sr.solorecipe.global.security.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.sr.solorecipe.global.security.CustomAuthenticationEntryPoint
 import com.sr.solorecipe.global.security.filter.JwtAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
