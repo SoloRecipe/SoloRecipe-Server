@@ -31,6 +31,8 @@ class SecurityConfig(
             .and()
             .authorizeRequests()
 
+            .antMatchers("/auth/register").permitAll()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
