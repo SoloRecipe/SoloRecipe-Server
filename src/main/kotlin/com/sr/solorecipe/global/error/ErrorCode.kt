@@ -9,4 +9,8 @@ enum class ErrorCode(
 
 
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
+
+
+
+    INTERNAL_SERVER_ERROR("서버에 문제가 발생했습니다.", 500),
 }
