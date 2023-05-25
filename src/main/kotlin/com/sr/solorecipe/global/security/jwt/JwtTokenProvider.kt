@@ -24,7 +24,6 @@ class JwtTokenProvider(
 ) {
     private val ACCESS_TOKEN_EXPIRED_TIME: Long = 60 * 15
     private val REFRESH_TOKEN_EXPIRED_TIME: Long = 60 * 60 * 24 * 7
-    private lateinit var tokenType: TokenType
 
     enum class TokenType(val value: String) {
         ACCESS_TOKEN("accessToken"),
@@ -42,12 +41,12 @@ class JwtTokenProvider(
 
 
     fun authentication(token: String): Authentication {
-        val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token, TokenType.ACCESS_TOKEN))
+        val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
         return UsernamePasswordAuthenticationToken(userDetails,"",userDetails.authorities)
     }
 
-    fun getTokenSubject(token: String, tokenType: TokenType): String {
-        return getTokenBody(token, tokenType).subject
+    fun getTokenSubject(token: String): String {
+        return getTokenBody(token).subject
     }
 
     fun resolveToken(req: HttpServletRequest): String? {
@@ -55,10 +54,10 @@ class JwtTokenProvider(
         return if (token.startsWith("Bearer ")) token.replace("Bearer ", "") else null
     }
 
-    private fun getTokenBody(token: String, tokenType: TokenType): Claims {
+    private fun getTokenBody(token: String): Claims {
         return try {
             Jwts.parserBuilder()
-                .setSigningKey(getKeyByTokenType(tokenType))
+                .setSigningKey(jwtProperties.secret)
                 .build()
                 .parseClaimsJws(token)
                 .body
@@ -71,7 +70,7 @@ class JwtTokenProvider(
 
     private fun createToken(email: String, tokenType: TokenType): String {
         return Jwts.builder()
-            .signWith(getKeyByTokenType(tokenType), SignatureAlgorithm.HS256)
+            .signWith(jwtProperties.secret, SignatureAlgorithm.HS256)
             .claim("email", email)
             .claim("type", tokenType)
             .setIssuedAt(Date())
@@ -79,10 +78,6 @@ class JwtTokenProvider(
             .setExpiration(Date(System.currentTimeMillis() + getTokenExpiredTime(tokenType) * 1000))
             .compact()
     }
-
-    private fun getKeyByTokenType(tokenType: TokenType): Key =
-        if (tokenType == TokenType.ACCESS_TOKEN) jwtProperties.accessSecret
-        else jwtProperties.refreshSecret
 
     private fun getTokenExpiredTime(tokenType: TokenType): Long =
         if (tokenType == TokenType.ACCESS_TOKEN) ACCESS_TOKEN_EXPIRED_TIME
