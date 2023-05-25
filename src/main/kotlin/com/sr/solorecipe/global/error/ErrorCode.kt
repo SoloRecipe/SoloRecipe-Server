@@ -4,8 +4,11 @@ enum class ErrorCode(
     val message: String,
     val status: Int
 ) {
+    PASSWORD_NOT_MATCH("비밀번호가 옳지 않습니다.", 400),
+
+
     EXPIRED_TOKEN("만료된 토큰 입니다.", 401),
-    UNAUTHORIZED("권함이 없습니다.",401),
+    UNAUTHORIZED("권한이 없습니다.",401),
 
 
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
