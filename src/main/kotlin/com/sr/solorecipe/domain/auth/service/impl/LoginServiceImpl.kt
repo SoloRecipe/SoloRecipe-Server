@@ -42,7 +42,7 @@ class LoginServiceImpl(
     }
 
     private fun checkPassword(user: User, password: String) {
-        if (!passwordEncoder.matches(user.password, password))
+        if (!passwordEncoder.matches(password, user.password))
             throw PasswordNotMatchException()
     }
 
