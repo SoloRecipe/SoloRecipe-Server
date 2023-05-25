@@ -17,9 +17,9 @@ class GetNewRefreshTokenServiceImpl(
     override fun get(refreshToken: String): TokenDto {
         val existingRefreshToken = refreshTokenRepository.findByToken(refreshToken)
             ?: throw ExpiredRefreshTokenException()
-        val email = jwtTokenProvider.getTokenSubject(refreshToken, JwtTokenProvider.TokenType.REFRESH_TOKEN)
+        val email = jwtTokenProvider.getTokenSubject(refreshToken)
 
-        val newAccessToken = jwtTokenProvider.generateAccessToken(email)
+        val newAccessToken  = jwtTokenProvider.generateAccessToken(email)
         val newRefreshToken = jwtTokenProvider.generateRefreshToken(email)
         val newAccessExpiredTime = jwtTokenProvider.accessExpiredTime
         val newRefreshExpiredTime = jwtTokenProvider.refreshExpiredTime
