@@ -1,7 +1,6 @@
 package com.sr.solorecipe.domain.auth.presentation.data.request
 
-data class SignUpRequestDto(
+data class LoginRequest(
     val email: String,
-    val password: String,
-    val nickname: String
+    val password: String
 )
