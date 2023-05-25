@@ -47,7 +47,7 @@ class AuthConverterImpl(
         TokenResponse(
             accessToken = tokenDto.accessToken,
             refreshToken = tokenDto.refreshToken,
-            accessExpiredTime = tokenDto.accessExpiredTime,
-            refreshExpiredTime = tokenDto.refreshExpiredTime
+            accessExp = tokenDto.accessExp,
+            refreshExp = tokenDto.refreshExp
         )
 }

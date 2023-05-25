@@ -36,8 +36,8 @@ class LoginServiceImpl(
         return TokenDto(
             accessToken = accessToken,
             refreshToken = refreshToken,
-            accessExpiredTime = accessExpiredTime,
-            refreshExpiredTime = refreshExpiredTime
+            accessExp = accessExpiredTime,
+            refreshExp = refreshExpiredTime
         )
     }
 

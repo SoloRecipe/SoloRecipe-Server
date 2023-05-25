@@ -5,6 +5,6 @@ import java.time.LocalDateTime
 data class TokenDto(
     val accessToken: String,
     val refreshToken: String,
-    val accessExpiredTime: LocalDateTime,
-    val refreshExpiredTime: LocalDateTime
+    val accessExp: LocalDateTime,
+    val refreshExp: LocalDateTime
 )
