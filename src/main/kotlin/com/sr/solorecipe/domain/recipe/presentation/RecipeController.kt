@@ -21,9 +21,9 @@ class RecipeController(
     @GetMapping("/suggest")
     fun getRecipeListSortedByRecipeViews(pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListSortedByRecipeViewsService.getRecipeList(pageable)
-        val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList.stream()
+        val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
             .map(recipeConverter::toResponse)
-            .toList()
+
         return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
     }
 }
