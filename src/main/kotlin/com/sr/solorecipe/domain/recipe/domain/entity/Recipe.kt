@@ -5,10 +5,7 @@ import com.sr.solorecipe.domain.user.domain.entity.User
 import com.sr.solorecipe.global.common.entity.BaseIdEntity
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 data class Recipe(
@@ -21,5 +18,9 @@ data class Recipe(
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    val user: User
+    val user: User,
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "recipe_views")
+    val recipeViews: RecipeViews
 ):BaseIdEntity()
