@@ -1,17 +1,22 @@
 package com.sr.solorecipe.domain.recipe.util.impl
 
 import com.sr.solorecipe.domain.recipe.domain.entity.Recipe
+import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeDetailDto
 import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeDto
 import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeListDto
+import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeProcessDto
+import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
+import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeProcessResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
+import com.sr.solorecipe.domain.review.domain.presentation.dto.ReviewDto
+import com.sr.solorecipe.domain.review.domain.presentation.response.ReviewResponse
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 
 @Component
 class RecipeConverterImpl(
-
 ): RecipeConverter {
     override fun toDto(recipe: Recipe): RecipeDto =
         RecipeDto(
@@ -27,6 +32,15 @@ class RecipeConverterImpl(
             recipeList = recipeDto
         )
 
+    override fun toDto(recipe: Recipe, recipeProcessDto: List<RecipeProcessDto>, reviewDto: List<ReviewDto>): RecipeDetailDto =
+        RecipeDetailDto(
+            idx = recipe.idx,
+            name = recipe.name,
+            thumbnail = recipe.thumbnail,
+            recipeProcess = recipeProcessDto,
+            reviews = reviewDto
+        )
+
     override fun toResponse(recipeDto: RecipeDto): RecipeResponse =
         RecipeResponse(
             idx = recipeDto.idx,
@@ -38,5 +52,18 @@ class RecipeConverterImpl(
             page = pageable.pageNumber,
             size = recipeListResponse.size,
             recipeList = recipeListResponse
+        )
+
+    override fun toResponse(
+        recipeDetailDto: RecipeDetailDto,
+        recipeProcessResponse: List<RecipeProcessResponse>,
+        reviewResponse: List<ReviewResponse>
+    ): RecipeDetailResponse =
+        RecipeDetailResponse(
+            idx = recipeDetailDto.idx,
+            name = recipeDetailDto.name,
+            thumbnail = recipeDetailDto.thumbnail,
+            recipeProcess = recipeProcessResponse,
+            reviews = reviewResponse
         )
 }
