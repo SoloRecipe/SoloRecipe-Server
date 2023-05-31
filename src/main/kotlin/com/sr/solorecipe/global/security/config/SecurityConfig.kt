@@ -37,6 +37,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PATCH,"/auth").permitAll()
 
             .antMatchers(HttpMethod.GET,"/recipe/suggest").authenticated()
+            .antMatchers(HttpMethod.GET,"/recipe/detail/**").authenticated()
 
             .anyRequest().denyAll()
             .and()
