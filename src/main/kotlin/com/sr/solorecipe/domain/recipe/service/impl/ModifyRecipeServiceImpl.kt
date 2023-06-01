@@ -19,9 +19,9 @@ class ModifyRecipeServiceImpl(
             .orElseGet { throw RecipeNotFoundException() }
         val foundRecipeProcess = recipeProcessRepository.findAllByRecipeIdx(idx)
 
-        foundRecipe.updateRecipe(modifyRecipeDto.name, modifyRecipeDto.thumbnail)
+        foundRecipe.modify(modifyRecipeDto.name, modifyRecipeDto.thumbnail)
         foundRecipeProcess
             .map { recipeProcess ->
-                recipeProcess.update(modifyRecipeDto.recipeProcess[(recipeProcess.idx - 1).toInt()]) }
+                recipeProcess.modify(modifyRecipeDto.recipeProcess[(recipeProcess.idx - 1).toInt()]) }
     }
 }

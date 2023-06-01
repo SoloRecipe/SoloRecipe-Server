@@ -22,7 +22,7 @@ data class Recipe(
     @JoinColumn(name = "recipe_views")
     val recipeViews: RecipeViews
 ):BaseIdEntity() {
-    fun updateRecipe(name: String, thumbnail: String) {
+    fun modify(name: String, thumbnail: String) {
         this.name = name
         this.thumbnail = thumbnail
     }

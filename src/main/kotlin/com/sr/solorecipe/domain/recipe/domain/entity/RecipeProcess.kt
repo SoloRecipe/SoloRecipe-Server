@@ -21,7 +21,7 @@ data class RecipeProcess(
     @OnDelete(action = OnDeleteAction.CASCADE)
     val recipe: Recipe
 ):BaseIdEntity() {
-    fun update(recipeProcess: ModifyRecipeProcessDto) {
+    fun modify(recipeProcess: ModifyRecipeProcessDto) {
         this.description = recipeProcess.description
         this.image = recipeProcess.image
     }
