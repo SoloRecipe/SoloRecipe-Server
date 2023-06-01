@@ -1,6 +1,7 @@
 package com.sr.solorecipe.domain.recipe.domain.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.sr.solorecipe.domain.recipe.presentation.data.dto.ModifyRecipeProcessDto
 import com.sr.solorecipe.global.common.entity.BaseIdEntity
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
@@ -12,11 +13,16 @@ import javax.persistence.ManyToOne
 @Entity
 data class RecipeProcess(
     @Column(nullable = false)
-    val description: String,
+    var description: String,
     @Column(nullable = false)
-    val image: String,
+    var image: String,
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     val recipe: Recipe
-):BaseIdEntity()
+):BaseIdEntity() {
+    fun update(recipeProcess: ModifyRecipeProcessDto) {
+        this.description = recipeProcess.description
+        this.image = recipeProcess.image
+    }
+}
