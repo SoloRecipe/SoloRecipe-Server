@@ -10,11 +10,9 @@ import javax.persistence.*
 @Entity
 data class Recipe(
     @Column(nullable = false)
-    val name: String,
+    var name: String,
     @Column(nullable = false)
-    val thumbnail: String,
-    @Column(nullable = false, name = "count_likes")
-    val countLikes: Long,
+    var thumbnail: String,
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -23,4 +21,9 @@ data class Recipe(
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "recipe_views")
     val recipeViews: RecipeViews
-):BaseIdEntity()
+):BaseIdEntity() {
+    fun updateRecipe(name: String, thumbnail: String) {
+        this.name = name
+        this.thumbnail = thumbnail
+    }
+}
