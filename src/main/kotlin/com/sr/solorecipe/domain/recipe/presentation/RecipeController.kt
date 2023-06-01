@@ -1,19 +1,18 @@
 package com.sr.solorecipe.domain.recipe.presentation
 
+import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
 import com.sr.solorecipe.domain.recipe.service.GetRecipeDetailService
 import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsService
+import com.sr.solorecipe.domain.recipe.service.ModifyRecipeService
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/recipe")
@@ -22,7 +21,8 @@ class RecipeController(
     private val recipeProcessConverter: RecipeProcessConverter,
     private val reviewConverter: ReviewConverter,
     private val getRecipeListSortedByRecipeViewsService: GetRecipeListSortedByRecipeViewsService,
-    private val getRecipeDetailService: GetRecipeDetailService
+    private val getRecipeDetailService: GetRecipeDetailService,
+    private val modifyRecipeService: ModifyRecipeService
 ) {
 
     @GetMapping("/suggest")
@@ -44,4 +44,16 @@ class RecipeController(
 
         return ResponseEntity.ok(recipeConverter.toResponse(result, recipeProcessResponse, reviewResponse))
     }
+
+    @PatchMapping("/{idx}")
+    fun modifyRecipe(@PathVariable("idx")idx: Long, @RequestBody modifyRecipeRequest: ModifyRecipeRequest): ResponseEntity<Void> {
+        val modifyRecipeProcessDto = modifyRecipeRequest.recipeProcess
+            .map(recipeProcessConverter::toDto)
+        modifyRecipeService.modify(idx, recipeConverter.toDto(modifyRecipeRequest, modifyRecipeProcessDto))
+
+        return ResponseEntity.noContent().build()
+    }
+
+
+
 }
