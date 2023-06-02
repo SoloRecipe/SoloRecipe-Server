@@ -1,10 +1,8 @@
 package com.sr.solorecipe.domain.recipe.util.impl
 
 import com.sr.solorecipe.domain.recipe.domain.entity.Recipe
-import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeDetailDto
-import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeDto
-import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeListDto
-import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeProcessDto
+import com.sr.solorecipe.domain.recipe.presentation.data.dto.*
+import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeProcessResponse
@@ -39,6 +37,16 @@ class RecipeConverterImpl(
             thumbnail = recipe.thumbnail,
             recipeProcess = recipeProcessDto,
             reviews = reviewDto
+        )
+
+    override fun toDto(
+        modifyRecipeRequest: ModifyRecipeRequest,
+        modifyRecipeProcessDto: List<ModifyRecipeProcessDto>
+    ): ModifyRecipeDto =
+        ModifyRecipeDto(
+            name = modifyRecipeRequest.name,
+            thumbnail = modifyRecipeRequest.thumbnail,
+            recipeProcess = modifyRecipeProcessDto
         )
 
     override fun toResponse(recipeDto: RecipeDto): RecipeResponse =
