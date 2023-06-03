@@ -28,7 +28,7 @@ class RecipeController(
 ) {
 
     @GetMapping("/suggest")
-    fun getRecipeListSortedByRecipeViews(pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeListSortedByRecipeViews(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListSortedByRecipeViewsService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
             .map(recipeConverter::toResponse)
@@ -37,13 +37,17 @@ class RecipeController(
     }
 
     @GetMapping("/all")
-    fun getRecipeList(pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeList(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
                 .map(recipeConverter::toResponse)
 
         return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
 
+    }
+    @GetMapping("/search")
+    fun searchRecipe(@RequestParam name: String): ResponseEntity<Void> {
+        return ResponseEntity.ok().build()
     }
 
     @GetMapping("/detail/{idx}")
