@@ -5,6 +5,7 @@ import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailRe
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
 import com.sr.solorecipe.domain.recipe.service.GetRecipeDetailService
+import com.sr.solorecipe.domain.recipe.service.GetRecipeListService
 import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsService
 import com.sr.solorecipe.domain.recipe.service.ModifyRecipeService
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
@@ -22,7 +23,8 @@ class RecipeController(
     private val reviewConverter: ReviewConverter,
     private val getRecipeListSortedByRecipeViewsService: GetRecipeListSortedByRecipeViewsService,
     private val getRecipeDetailService: GetRecipeDetailService,
-    private val modifyRecipeService: ModifyRecipeService
+    private val modifyRecipeService: ModifyRecipeService,
+    private val getRecipeListService: GetRecipeListService
 ) {
 
     @GetMapping("/suggest")
@@ -32,6 +34,16 @@ class RecipeController(
             .map(recipeConverter::toResponse)
 
         return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
+    }
+
+    @GetMapping("/all")
+    fun getRecipeList(pageable: Pageable): ResponseEntity<RecipeListResponse> {
+        val recipeListDto = getRecipeListService.getRecipeList(pageable)
+        val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
+                .map(recipeConverter::toResponse)
+
+        return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
+
     }
 
     @GetMapping("/detail/{idx}")
