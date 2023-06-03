@@ -7,5 +7,8 @@ import javax.persistence.Entity
 @Entity
 data class RecipeViews(
     @Column(nullable = false)
-    val views: Long
-): BaseIdEntity()
+    var views: Long
+): BaseIdEntity() {
+    fun add(){ ++this.views }
+}
+
