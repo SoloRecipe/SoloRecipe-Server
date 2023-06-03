@@ -1,4 +1,4 @@
-package com.sr.solorecipe.domain.review.domain.presentation.response
+package com.sr.solorecipe.domain.review.presentation.response
 
 data class ReviewResponse(
     val userIdx: Long,

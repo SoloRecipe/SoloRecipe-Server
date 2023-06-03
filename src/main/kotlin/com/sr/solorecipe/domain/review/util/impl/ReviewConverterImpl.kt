@@ -1,9 +1,9 @@
-package com.sr.solorecipe.domain.review.domain.util.impl
+package com.sr.solorecipe.domain.review.util.impl
 
 import com.sr.solorecipe.domain.review.domain.entity.Review
-import com.sr.solorecipe.domain.review.domain.presentation.dto.ReviewDto
-import com.sr.solorecipe.domain.review.domain.presentation.response.ReviewResponse
-import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
+import com.sr.solorecipe.domain.review.presentation.dto.ReviewDto
+import com.sr.solorecipe.domain.review.presentation.response.ReviewResponse
+import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.stereotype.Component
 
 @Component
