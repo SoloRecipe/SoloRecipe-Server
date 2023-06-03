@@ -4,10 +4,7 @@ import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeReq
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
-import com.sr.solorecipe.domain.recipe.service.GetRecipeDetailService
-import com.sr.solorecipe.domain.recipe.service.GetRecipeListService
-import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsService
-import com.sr.solorecipe.domain.recipe.service.ModifyRecipeService
+import com.sr.solorecipe.domain.recipe.service.*
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
@@ -24,7 +21,8 @@ class RecipeController(
     private val getRecipeListSortedByRecipeViewsService: GetRecipeListSortedByRecipeViewsService,
     private val getRecipeDetailService: GetRecipeDetailService,
     private val modifyRecipeService: ModifyRecipeService,
-    private val getRecipeListService: GetRecipeListService
+    private val getRecipeListService: GetRecipeListService,
+    private val searchRecipeService: SearchRecipeService
 ) {
 
     @GetMapping("/suggest")
@@ -46,9 +44,10 @@ class RecipeController(
 
     }
     @GetMapping("/search")
-    fun searchRecipe(@RequestParam name: String): ResponseEntity<Void> {
-        return ResponseEntity.ok().build()
-    }
+    fun searchRecipe(@RequestParam name: String): ResponseEntity<List<RecipeResponse>> =
+            searchRecipeService.searchRecipe(name)
+                    .map { recipeConverter.toResponse(it) }
+                    .let { ResponseEntity.ok(it) }
 
     @GetMapping("/detail/{idx}")
     fun getRecipeDetail(@PathVariable("idx")idx: Long): ResponseEntity<RecipeDetailResponse> {
