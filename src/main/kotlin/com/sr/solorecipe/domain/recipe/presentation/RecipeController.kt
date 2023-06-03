@@ -1,6 +1,7 @@
 package com.sr.solorecipe.domain.recipe.presentation
 
 import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeRequest
+import com.sr.solorecipe.domain.recipe.presentation.data.response.AllRecipeResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
@@ -32,6 +33,13 @@ class RecipeController(
             .map(recipeConverter::toResponse)
 
         return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
+    }
+
+    @GetMapping("/all")
+    fun getRecipeList(pageable: Pageable): ResponseEntity<Void> {
+        val recipeListDto = getRecipeListSortedByRecipeViewsService.getRecipeList(pageable)
+        return ResponseEntity.ok().build()
+
     }
 
     @GetMapping("/detail/{idx}")
