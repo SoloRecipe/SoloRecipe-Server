@@ -9,7 +9,7 @@ import com.sr.solorecipe.domain.recipe.service.GetRecipeDetailService
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.domain.repository.ReviewRepository
-import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
+import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional

@@ -10,7 +10,7 @@ import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsS
 import com.sr.solorecipe.domain.recipe.service.ModifyRecipeService
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
-import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
+import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

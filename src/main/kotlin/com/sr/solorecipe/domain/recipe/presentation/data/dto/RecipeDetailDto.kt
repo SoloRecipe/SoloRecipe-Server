@@ -1,6 +1,6 @@
 package com.sr.solorecipe.domain.recipe.presentation.data.dto
 
-import com.sr.solorecipe.domain.review.domain.presentation.dto.ReviewDto
+import com.sr.solorecipe.domain.review.presentation.dto.ReviewDto
 
 
 data class RecipeDetailDto (

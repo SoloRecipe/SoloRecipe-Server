@@ -5,7 +5,7 @@ import com.sr.solorecipe.domain.auth.presentation.data.dto.LoginDto
 import com.sr.solorecipe.domain.auth.presentation.data.dto.TokenDto
 import com.sr.solorecipe.domain.auth.service.LoginService
 import com.sr.solorecipe.domain.auth.util.AuthConverter
-import com.sr.solorecipe.domain.exception.PasswordNotMatchException
+import com.sr.solorecipe.domain.auth.exception.PasswordNotMatchException
 import com.sr.solorecipe.domain.user.domain.entity.User
 import com.sr.solorecipe.domain.user.domain.repository.UserRepository
 import com.sr.solorecipe.domain.user.exception.UserNotFoundException
