@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface RecipeRepository: JpaRepository<Recipe, Long> {
     fun findAllByOrderByRecipeViewsViewsDesc(pageable: Pageable): List<Recipe>
-    override fun findAll(pageable: Pageable): Page<Recipe>
 
 }
