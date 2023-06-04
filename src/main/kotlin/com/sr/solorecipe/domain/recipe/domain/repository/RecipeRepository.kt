@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface RecipeRepository: JpaRepository<Recipe, Long> {
     fun findAllByOrderByRecipeViewsViewsDesc(pageable: Pageable): List<Recipe>
     fun findAllByUser(user: User): List<Recipe>
+    fun findRecipeByNameContaining(name: String): List<Recipe>
 }
