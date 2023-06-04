@@ -1,6 +1,6 @@
 package com.sr.solorecipe.domain.recipe.presentation.data.response
 
-import com.sr.solorecipe.domain.review.domain.presentation.response.ReviewResponse
+import com.sr.solorecipe.domain.review.presentation.response.ReviewResponse
 
 data class RecipeDetailResponse(
     val idx: Long,

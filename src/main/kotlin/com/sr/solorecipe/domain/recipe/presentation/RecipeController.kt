@@ -7,7 +7,7 @@ import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
 import com.sr.solorecipe.domain.recipe.service.*
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
-import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
+import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

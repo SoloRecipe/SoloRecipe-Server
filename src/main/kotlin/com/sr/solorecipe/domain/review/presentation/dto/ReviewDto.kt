@@ -1,4 +1,4 @@
-package com.sr.solorecipe.domain.review.domain.presentation.dto
+package com.sr.solorecipe.domain.review.presentation.dto
 
 data class ReviewDto (
     val userIdx: Long,
