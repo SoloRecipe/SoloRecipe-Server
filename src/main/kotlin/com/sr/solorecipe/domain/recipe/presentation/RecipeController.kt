@@ -4,10 +4,7 @@ import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeReq
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
-import com.sr.solorecipe.domain.recipe.service.GetRecipeDetailService
-import com.sr.solorecipe.domain.recipe.service.GetRecipeListService
-import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsService
-import com.sr.solorecipe.domain.recipe.service.ModifyRecipeService
+import com.sr.solorecipe.domain.recipe.service.*
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.domain.util.ReviewConverter
@@ -24,11 +21,12 @@ class RecipeController(
     private val getRecipeListSortedByRecipeViewsService: GetRecipeListSortedByRecipeViewsService,
     private val getRecipeDetailService: GetRecipeDetailService,
     private val modifyRecipeService: ModifyRecipeService,
-    private val getRecipeListService: GetRecipeListService
+    private val getRecipeListService: GetRecipeListService,
+    private val searchRecipeService: SearchRecipeService
 ) {
 
     @GetMapping("/suggest")
-    fun getRecipeListSortedByRecipeViews(pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeListSortedByRecipeViews(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListSortedByRecipeViewsService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
             .map(recipeConverter::toResponse)
@@ -37,7 +35,7 @@ class RecipeController(
     }
 
     @GetMapping("/all")
-    fun getRecipeList(pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeList(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
                 .map(recipeConverter::toResponse)
@@ -45,6 +43,11 @@ class RecipeController(
         return ResponseEntity.ok(recipeConverter.toResponse(recipeListDto.pageable, recipeResponse))
 
     }
+    @GetMapping("/search")
+    fun searchRecipe(@RequestParam name: String): ResponseEntity<List<RecipeResponse>> =
+            searchRecipeService.searchRecipe(name)
+                    .map { recipeConverter.toResponse(it) }
+                    .let { ResponseEntity.ok(it) }
 
     @GetMapping("/detail/{idx}")
     fun getRecipeDetail(@PathVariable("idx")idx: Long): ResponseEntity<RecipeDetailResponse> {
