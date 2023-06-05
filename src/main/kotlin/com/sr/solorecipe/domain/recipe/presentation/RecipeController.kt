@@ -25,7 +25,8 @@ class RecipeController(
     private val modifyRecipeService: ModifyRecipeService,
     private val getRecipeListService: GetRecipeListService,
     private val searchRecipeService: SearchRecipeService,
-    private val createRecipeService: CreateRecipeService
+    private val createRecipeService: CreateRecipeService,
+    private val removeRecipeService: RemoveRecipeService
 ) {
 
     @GetMapping("/suggest")
@@ -77,7 +78,11 @@ class RecipeController(
 
         return ResponseEntity.noContent().build()
     }
-
+    @DeleteMapping("/{idx}")
+    fun deleteRecipe(@PathVariable("idx")idx: Long): ResponseEntity<Void> {
+        removeRecipeService.removeRecipe(idx)
+        return ResponseEntity.noContent().build()
+    }
 
 
 }
