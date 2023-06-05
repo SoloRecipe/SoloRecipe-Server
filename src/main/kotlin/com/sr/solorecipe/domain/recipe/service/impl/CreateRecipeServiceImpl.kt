@@ -9,8 +9,10 @@ import com.sr.solorecipe.domain.recipe.presentation.data.dto.CreateRecipeDto
 import com.sr.solorecipe.domain.recipe.service.CreateRecipeService
 import com.sr.solorecipe.domain.user.util.UserUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class CreateRecipeServiceImpl(
         private val recipeRepository: RecipeRepository,
         private val recipeProcessRepository: RecipeProcessRepository,

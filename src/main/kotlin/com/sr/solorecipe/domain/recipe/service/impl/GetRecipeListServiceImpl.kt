@@ -7,8 +7,10 @@ import com.sr.solorecipe.domain.recipe.service.GetRecipeListSortedByRecipeViewsS
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class GetRecipeListServiceImpl(
     private val recipeConverter: RecipeConverter,
     private val recipeRepository: RecipeRepository,

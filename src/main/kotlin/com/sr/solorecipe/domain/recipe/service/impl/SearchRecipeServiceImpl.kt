@@ -5,8 +5,10 @@ import com.sr.solorecipe.domain.recipe.presentation.data.dto.RecipeDto
 import com.sr.solorecipe.domain.recipe.service.SearchRecipeService
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class SearchRecipeServiceImpl(
         private val recipeRepository: RecipeRepository,
         private val recipeConverter: RecipeConverter
