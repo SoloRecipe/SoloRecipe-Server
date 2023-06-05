@@ -38,8 +38,9 @@ class SecurityConfig(
 
             .antMatchers(HttpMethod.GET,"/recipe/suggest").authenticated()
             .antMatchers(HttpMethod.GET,"/recipe/all").authenticated()
-                .antMatchers(HttpMethod.GET,"/recipe/search").authenticated()
+            .antMatchers(HttpMethod.GET,"/recipe/search").authenticated()
             .antMatchers(HttpMethod.GET,"/recipe/detail/**").authenticated()
+            .antMatchers(HttpMethod.POST,"/recipe").authenticated()
             .antMatchers(HttpMethod.PATCH,"/recipe/**").authenticated()
 
             .antMatchers(HttpMethod.GET,"/user").authenticated()

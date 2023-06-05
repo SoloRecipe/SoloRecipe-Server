@@ -2,6 +2,7 @@ package com.sr.solorecipe.domain.recipe.util.impl
 
 import com.sr.solorecipe.domain.recipe.domain.entity.Recipe
 import com.sr.solorecipe.domain.recipe.presentation.data.dto.*
+import com.sr.solorecipe.domain.recipe.presentation.data.request.CreateRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
@@ -29,6 +30,19 @@ class RecipeConverterImpl(
             pageable = pageable,
             recipeList = recipeDto
         )
+
+    override fun toDto(request: CreateRecipeRequest, dto: List<CreateRecipeDto.RecipeProcessDto>): CreateRecipeDto =
+            CreateRecipeDto(
+                    name = request.name,
+                    thumbnail = request.thumbnail,
+                    recipeProcess = dto
+            )
+
+    override fun toDto(request: CreateRecipeRequest.RecipeProcessRequest): CreateRecipeDto.RecipeProcessDto =
+            CreateRecipeDto.RecipeProcessDto(
+                    description = request.description,
+                    image = request.image
+            )
 
     override fun toDto(recipe: Recipe, recipeProcessDto: List<RecipeProcessDto>, reviewDto: List<ReviewDto>): RecipeDetailDto =
         RecipeDetailDto(

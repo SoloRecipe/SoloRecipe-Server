@@ -1,5 +1,6 @@
 package com.sr.solorecipe.domain.recipe.presentation
 
+import com.sr.solorecipe.domain.recipe.presentation.data.request.CreateRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.request.ModifyRecipeRequest
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeDetailResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResponse
@@ -9,6 +10,7 @@ import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -22,7 +24,8 @@ class RecipeController(
     private val getRecipeDetailService: GetRecipeDetailService,
     private val modifyRecipeService: ModifyRecipeService,
     private val getRecipeListService: GetRecipeListService,
-    private val searchRecipeService: SearchRecipeService
+    private val searchRecipeService: SearchRecipeService,
+    private val createRecipeService: CreateRecipeService
 ) {
 
     @GetMapping("/suggest")
@@ -58,6 +61,12 @@ class RecipeController(
             .map(reviewConverter::toResponse)
 
         return ResponseEntity.ok(recipeConverter.toResponse(result, recipeProcessResponse, reviewResponse))
+    }
+    @PostMapping
+    fun createRecipe(@RequestBody request: CreateRecipeRequest): ResponseEntity<Void> {
+        val recipeProcessDto = request.recipeProcess.map { recipeConverter.toDto(it) }
+        createRecipeService.createRecipe(recipeConverter.toDto(request, recipeProcessDto))
+        return ResponseEntity.status(HttpStatus.CREATED).build()
     }
 
     @PatchMapping("/{idx}")
