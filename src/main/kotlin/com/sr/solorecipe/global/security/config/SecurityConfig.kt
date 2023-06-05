@@ -42,6 +42,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET,"/recipe/detail/**").authenticated()
             .antMatchers(HttpMethod.POST,"/recipe").authenticated()
             .antMatchers(HttpMethod.PATCH,"/recipe/**").authenticated()
+            .antMatchers(HttpMethod.DELETE,"/recipe/**").authenticated()
 
             .antMatchers(HttpMethod.GET,"/user").authenticated()
 
