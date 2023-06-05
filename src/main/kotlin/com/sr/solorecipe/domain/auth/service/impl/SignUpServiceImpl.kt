@@ -3,8 +3,8 @@ package com.sr.solorecipe.domain.auth.service.impl
 import com.sr.solorecipe.domain.auth.presentation.data.dto.SignUpDto
 import com.sr.solorecipe.domain.auth.service.SignUpService
 import com.sr.solorecipe.domain.auth.util.AuthConverter
-import com.sr.solorecipe.domain.exception.DuplicatedEmailException
-import com.sr.solorecipe.domain.exception.DuplicatedNicknameException
+import com.sr.solorecipe.domain.auth.exception.DuplicatedEmailException
+import com.sr.solorecipe.domain.auth.exception.DuplicatedNicknameException
 import com.sr.solorecipe.domain.user.domain.repository.UserRepository
 import org.springframework.stereotype.Service
 

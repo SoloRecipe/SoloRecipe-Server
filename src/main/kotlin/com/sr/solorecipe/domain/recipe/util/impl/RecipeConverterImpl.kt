@@ -9,8 +9,8 @@ import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeListResp
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeProcessResponse
 import com.sr.solorecipe.domain.recipe.presentation.data.response.RecipeResponse
 import com.sr.solorecipe.domain.recipe.util.RecipeConverter
-import com.sr.solorecipe.domain.review.domain.presentation.dto.ReviewDto
-import com.sr.solorecipe.domain.review.domain.presentation.response.ReviewResponse
+import com.sr.solorecipe.domain.review.presentation.dto.ReviewDto
+import com.sr.solorecipe.domain.review.presentation.response.ReviewResponse
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 

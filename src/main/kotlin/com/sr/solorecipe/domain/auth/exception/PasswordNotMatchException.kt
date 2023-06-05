@@ -1,4 +1,4 @@
-package com.sr.solorecipe.domain.exception
+package com.sr.solorecipe.domain.auth.exception
 
 import com.sr.solorecipe.global.error.ErrorCode
 import com.sr.solorecipe.global.error.exception.BasicException
