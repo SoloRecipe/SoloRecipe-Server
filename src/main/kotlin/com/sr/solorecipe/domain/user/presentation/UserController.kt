@@ -3,6 +3,7 @@ package com.sr.solorecipe.domain.user.presentation
 import com.sr.solorecipe.domain.user.presentation.request.UpdateUserNameRequest
 import com.sr.solorecipe.domain.user.presentation.response.UserInfoResponse
 import com.sr.solorecipe.domain.user.service.GetUserInfoService
+import com.sr.solorecipe.domain.user.service.UpdateUserNameService
 import com.sr.solorecipe.domain.user.util.UserConverter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/user")
 class UserController(
     private val getUserInfoService: GetUserInfoService,
+    private val updateUserNameService: UpdateUserNameService,
     private val userConverter: UserConverter,
 ) {
     @GetMapping
@@ -29,6 +31,7 @@ class UserController(
     }
     @PatchMapping
     fun updateUserName(@RequestBody request: UpdateUserNameRequest): ResponseEntity<Void> {
+        updateUserNameService.updateUserName(userConverter.toDto(request))
         return ResponseEntity.noContent().build()
     }
 }
