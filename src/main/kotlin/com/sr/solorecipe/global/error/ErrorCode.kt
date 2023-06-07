@@ -13,6 +13,7 @@ enum class ErrorCode(
 
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
     RECIPE_NOT_FOUND("레시피가 존재하지 않습니다.", 404),
+    REVIEW_NOT_FOUND("리뷰가 존재하지 않습니다.", 404),
 
 
     DUPLICATED_EMAIL("이미 존재하는 이메일입니다.", 409),
