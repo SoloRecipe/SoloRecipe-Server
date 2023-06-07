@@ -10,7 +10,7 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToOne
 
-@Entity
+@Entity(name = "recipe_like")
 data class Like(
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
