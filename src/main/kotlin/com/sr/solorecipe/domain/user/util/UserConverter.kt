@@ -17,5 +17,5 @@ interface UserConverter {
     fun toDto(request: UpdateUserProfileImgRequest): UpdateUserProfileImgDto
     fun toDto(user: User, likeRecipe: List<UserInfoRecipeDto>, myRecipe: List<UserInfoRecipeDto>): UserInfoDto
     fun toResponse(userInfoRecipeDto: UserInfoRecipeDto): UserInfoRecipeResponse
-    fun toResponse(name: String, likeRecipe: List<UserInfoRecipeResponse>, myRecipe: List<UserInfoRecipeResponse>): UserInfoResponse
+    fun toResponse(dto: UserInfoDto, likeRecipe: List<UserInfoRecipeResponse>, myRecipe: List<UserInfoRecipeResponse>): UserInfoResponse
 }

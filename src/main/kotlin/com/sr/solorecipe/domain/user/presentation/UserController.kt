@@ -34,7 +34,7 @@ class UserController(
         val myRecipe = userInfoDto.myRecipe
             .map(userConverter::toResponse)
 
-        return ResponseEntity.ok(userConverter.toResponse(userInfoDto.name, likeRecipe, myRecipe))
+        return ResponseEntity.ok(userConverter.toResponse(userInfoDto, likeRecipe, myRecipe))
     }
     @PatchMapping
     fun updateUserName(@RequestBody request: UpdateUserNameRequest): ResponseEntity<Void> {

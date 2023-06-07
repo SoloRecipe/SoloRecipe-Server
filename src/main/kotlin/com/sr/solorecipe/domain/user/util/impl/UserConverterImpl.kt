@@ -35,6 +35,7 @@ class UserConverterImpl: UserConverter {
     override fun toDto(user: User, likeRecipe: List<UserInfoRecipeDto>, myRecipe: List<UserInfoRecipeDto>): UserInfoDto =
         UserInfoDto(
             name = user.nickname,
+            profileImg = user.profileImg,
             likeRecipe = likeRecipe,
             myRecipe = myRecipe
         )
@@ -45,9 +46,10 @@ class UserConverterImpl: UserConverter {
             thumbnail = userInfoRecipeDto.thumbnail
         )
 
-    override fun toResponse(name: String, likeRecipe: List<UserInfoRecipeResponse>, myRecipe: List<UserInfoRecipeResponse>): UserInfoResponse =
+    override fun toResponse(dto: UserInfoDto, likeRecipe: List<UserInfoRecipeResponse>, myRecipe: List<UserInfoRecipeResponse>): UserInfoResponse =
         UserInfoResponse(
-            name = name,
+            name = dto.name,
+            profileImg = dto.profileImg,
             likeRecipe = likeRecipe,
             myRecipe = myRecipe
         )
