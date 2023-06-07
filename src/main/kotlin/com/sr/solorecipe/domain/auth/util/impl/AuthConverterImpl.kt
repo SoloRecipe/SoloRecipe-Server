@@ -34,7 +34,8 @@ class AuthConverterImpl(
         User(
             email = signUpDto.email,
             password = signUpDto.password,
-            nickname = signUpDto.nickname
+            nickname = signUpDto.nickname,
+            profileImg =  ""
         )
 
     override fun toEntity(refreshToken: String, userIdx: Long): RefreshToken =

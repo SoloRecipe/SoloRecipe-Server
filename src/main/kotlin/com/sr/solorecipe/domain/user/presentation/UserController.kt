@@ -2,10 +2,12 @@ package com.sr.solorecipe.domain.user.presentation
 
 import com.sr.solorecipe.domain.auth.domain.entity.RefreshToken
 import com.sr.solorecipe.domain.user.presentation.request.UpdateUserNameRequest
+import com.sr.solorecipe.domain.user.presentation.request.UpdateUserProfileImgRequest
 import com.sr.solorecipe.domain.user.presentation.response.UserInfoResponse
 import com.sr.solorecipe.domain.user.service.GetUserInfoService
 import com.sr.solorecipe.domain.user.service.LogoutService
 import com.sr.solorecipe.domain.user.service.UpdateUserNameService
+import com.sr.solorecipe.domain.user.service.UpdateUserProfileImgService
 import com.sr.solorecipe.domain.user.util.UserConverter
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -21,6 +23,7 @@ class UserController(
     private val getUserInfoService: GetUserInfoService,
     private val updateUserNameService: UpdateUserNameService,
     private val userConverter: UserConverter,
+    private val updateUserProfileImgService: UpdateUserProfileImgService,
     private val logoutService: LogoutService
 ) {
     @GetMapping
@@ -31,11 +34,16 @@ class UserController(
         val myRecipe = userInfoDto.myRecipe
             .map(userConverter::toResponse)
 
-        return ResponseEntity.ok(userConverter.toResponse(userInfoDto.name, likeRecipe, myRecipe))
+        return ResponseEntity.ok(userConverter.toResponse(userInfoDto, likeRecipe, myRecipe))
     }
     @PatchMapping
     fun updateUserName(@RequestBody request: UpdateUserNameRequest): ResponseEntity<Void> {
         updateUserNameService.updateUserName(userConverter.toDto(request))
+        return ResponseEntity.noContent().build()
+    }
+    @PatchMapping("/profile")
+    fun updateUserProfileImg(@RequestBody request: UpdateUserProfileImgRequest): ResponseEntity<Void> {
+        updateUserProfileImgService.updateProfileImg(userConverter.toDto(request))
         return ResponseEntity.noContent().build()
     }
     @DeleteMapping

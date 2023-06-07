@@ -4,6 +4,7 @@ import com.sr.solorecipe.domain.user.presentation.response.UserInfoRecipeRespons
 
 data class UserInfoDto(
     val name: String,
+    val profileImg: String,
     val likeRecipe: List<UserInfoRecipeDto>,
     val myRecipe: List<UserInfoRecipeDto>
 )
