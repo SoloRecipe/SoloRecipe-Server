@@ -11,5 +11,7 @@ data class User(
     @Column(nullable = false)
     val password: String,
     @Column(nullable = false)
-    val nickname: String
+    val nickname: String,
+    @Column(nullable = false)
+    val profileImg: String
 ): BaseIdEntity()
