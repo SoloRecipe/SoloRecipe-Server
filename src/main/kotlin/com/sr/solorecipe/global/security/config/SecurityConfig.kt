@@ -53,6 +53,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PATCH,"/review/**").authenticated()
             .antMatchers(HttpMethod.DELETE,"/review/**").authenticated()
 
+            .antMatchers(HttpMethod.POST,"/like/**").authenticated()
+
             .antMatchers(HttpMethod.POST,"/image").authenticated()
             .anyRequest().denyAll()
             .and()
