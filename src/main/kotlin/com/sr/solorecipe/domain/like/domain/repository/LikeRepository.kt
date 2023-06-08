@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface LikeRepository: JpaRepository<Like, Long> {
     fun findAllByUser(user: User): List<Like>
+    fun findByRecipeIdx(idx: Long): Like
 }
