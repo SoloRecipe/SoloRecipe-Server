@@ -10,6 +10,7 @@ import com.sr.solorecipe.domain.recipe.util.RecipeConverter
 import com.sr.solorecipe.domain.recipe.util.RecipeProcessConverter
 import com.sr.solorecipe.domain.review.util.ReviewConverter
 import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -30,7 +31,7 @@ class RecipeController(
 ) {
 
     @GetMapping("/suggest")
-    fun getRecipeListSortedByRecipeViews(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeListSortedByRecipeViews(@PageableDefault(page = 0, size = 2) pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListSortedByRecipeViewsService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
             .map(recipeConverter::toResponse)
@@ -39,7 +40,7 @@ class RecipeController(
     }
 
     @GetMapping("/all")
-    fun getRecipeList(@RequestParam pageable: Pageable): ResponseEntity<RecipeListResponse> {
+    fun getRecipeList(@PageableDefault(page = 0, size = 2) pageable: Pageable): ResponseEntity<RecipeListResponse> {
         val recipeListDto = getRecipeListService.getRecipeList(pageable)
         val recipeResponse: List<RecipeResponse> = recipeListDto.recipeList
                 .map(recipeConverter::toResponse)
