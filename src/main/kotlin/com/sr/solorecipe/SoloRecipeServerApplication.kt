@@ -11,9 +11,5 @@ import javax.annotation.PostConstruct
 class SoloRecipeServerApplication
 
 fun main(args: Array<String>) {
-    @PostConstruct
-    fun started() =
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"))
-
     runApplication<SoloRecipeServerApplication>(*args)
 }
