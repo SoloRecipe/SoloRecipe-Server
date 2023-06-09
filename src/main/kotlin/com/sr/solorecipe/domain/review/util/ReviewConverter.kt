@@ -8,11 +8,12 @@ import com.sr.solorecipe.domain.review.presentation.dto.WriteReviewDto
 import com.sr.solorecipe.domain.review.presentation.request.UpdateReviewRequest
 import com.sr.solorecipe.domain.review.presentation.request.WriteReviewRequest
 import com.sr.solorecipe.domain.review.presentation.response.ReviewResponse
+import com.sr.solorecipe.domain.user.domain.entity.User
 
 interface ReviewConverter {
     fun toDto(review: Review): ReviewDto
     fun toDto(request: UpdateReviewRequest, idx: Long): UpdateReviewDto
     fun toResponse(reviewDto: ReviewDto): ReviewResponse
     fun toDto(request: WriteReviewRequest): WriteReviewDto
-    fun toEntity(foundRecipe: Recipe, writeReviewDto: WriteReviewDto): Review
+    fun toEntity(currentUser: User, foundRecipe: Recipe, writeReviewDto: WriteReviewDto): Review
 }

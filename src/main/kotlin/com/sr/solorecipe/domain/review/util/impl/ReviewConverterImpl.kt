@@ -9,6 +9,7 @@ import com.sr.solorecipe.domain.review.presentation.request.UpdateReviewRequest
 import com.sr.solorecipe.domain.review.presentation.request.WriteReviewRequest
 import com.sr.solorecipe.domain.review.presentation.response.ReviewResponse
 import com.sr.solorecipe.domain.review.util.ReviewConverter
+import com.sr.solorecipe.domain.user.domain.entity.User
 import org.springframework.stereotype.Component
 
 @Component
@@ -17,8 +18,9 @@ class ReviewConverterImpl(
 ): ReviewConverter {
     override fun toDto(review: Review): ReviewDto =
         ReviewDto(
-            userIdx = review.recipe.user.idx,
-            userName = review.recipe.user.nickname,
+            userIdx = review.user.idx,
+            userName = review.user.nickname,
+            userProfileImage = review.user.profileImg,
             content = review.content
         )
 
@@ -37,12 +39,14 @@ class ReviewConverterImpl(
         ReviewResponse(
             userIdx = reviewDto.userIdx,
             userName = reviewDto.userName,
+            userProfileImage = reviewDto.userProfileImage,
             content = reviewDto.content
         )
 
-    override fun toEntity(foundRecipe: Recipe, writeReviewDto: WriteReviewDto): Review =
+    override fun toEntity(currentUser: User, foundRecipe: Recipe, writeReviewDto: WriteReviewDto): Review =
         Review(
             content = writeReviewDto.content,
-            recipe = foundRecipe
+            recipe = foundRecipe,
+            user = currentUser
         )
 }
