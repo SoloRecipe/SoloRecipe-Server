@@ -19,6 +19,7 @@ class ReviewConverterImpl(
         ReviewDto(
             userIdx = review.recipe.user.idx,
             userName = review.recipe.user.nickname,
+            userProfileImage = review.recipe.user.profileImg,
             content = review.content
         )
 
@@ -37,6 +38,7 @@ class ReviewConverterImpl(
         ReviewResponse(
             userIdx = reviewDto.userIdx,
             userName = reviewDto.userName,
+            userProfileImage = reviewDto.userProfileImage,
             content = reviewDto.content
         )
 
