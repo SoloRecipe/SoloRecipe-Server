@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component
 class UserConverterImpl: UserConverter {
     override fun toDto(recipe: Recipe): UserInfoRecipeDto =
         UserInfoRecipeDto(
+            idx = recipe.idx,
             name = recipe.name,
             thumbnail = recipe.thumbnail
         )
@@ -42,6 +43,7 @@ class UserConverterImpl: UserConverter {
 
     override fun toResponse(userInfoRecipeDto: UserInfoRecipeDto): UserInfoRecipeResponse =
         UserInfoRecipeResponse(
+            idx = userInfoRecipeDto.idx,
             name = userInfoRecipeDto.name,
             thumbnail = userInfoRecipeDto.thumbnail
         )
