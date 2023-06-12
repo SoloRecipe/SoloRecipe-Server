@@ -10,7 +10,7 @@ enum class ErrorCode(
     EXPIRED_TOKEN("만료된 토큰 입니다.", 401),
     UNAUTHORIZED("권한이 없습니다.",401),
 
-
+    DUPLICATED_LIKE("이미 좋아요를 눌렀습니다.", 403),
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
     RECIPE_NOT_FOUND("레시피가 존재하지 않습니다.", 404),
     REVIEW_NOT_FOUND("리뷰가 존재하지 않습니다.", 404),
