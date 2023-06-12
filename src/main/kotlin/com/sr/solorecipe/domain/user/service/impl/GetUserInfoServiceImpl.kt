@@ -19,8 +19,10 @@ class GetUserInfoServiceImpl(
         val user = userUtil.currentUser()
         val recipeLike = likeRepository.findAllByUser(user)
             .map { userConverter.toDto(it.recipe) }
+            .sortedByDescending { it.idx }
         val myRecipe = recipeRepository.findAllByUser(user)
             .map { userConverter.toDto(it) }
+            .sortedByDescending { it.idx }
 
         return userConverter.toDto(user, recipeLike, myRecipe)
     }
