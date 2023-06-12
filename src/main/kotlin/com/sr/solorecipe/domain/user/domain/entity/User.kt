@@ -11,7 +11,14 @@ data class User(
     @Column(nullable = false)
     val password: String,
     @Column(nullable = false)
-    val nickname: String,
+    var nickname: String,
     @Column(nullable = false)
-    val profileImg: String
-): BaseIdEntity()
+    var profileImg: String
+): BaseIdEntity() {
+    fun updateUserName(name: String) {
+        this.nickname = name
+    }
+    fun updateProfileImg(profileImg: String) {
+        this.profileImg = profileImg
+    }
+}
