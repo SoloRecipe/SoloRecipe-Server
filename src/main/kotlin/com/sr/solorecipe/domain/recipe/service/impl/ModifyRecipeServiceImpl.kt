@@ -15,6 +15,7 @@ class ModifyRecipeServiceImpl(
     private val recipeProcessRepository: RecipeProcessRepository,
 ): ModifyRecipeService {
     override fun modify(idx: Long, modifyRecipeDto: ModifyRecipeDto) {
+        var i = 0
         val foundRecipe = recipeRepository.findById(idx)
             .orElseGet { throw RecipeNotFoundException() }
         val foundRecipeProcess = recipeProcessRepository.findAllByRecipeIdx(idx)
@@ -22,6 +23,6 @@ class ModifyRecipeServiceImpl(
         foundRecipe.modify(modifyRecipeDto.name, modifyRecipeDto.thumbnail)
         foundRecipeProcess
             .map { recipeProcess ->
-                recipeProcess.modify(modifyRecipeDto.recipeProcess[(recipeProcess.idx - 1).toInt()]) }
+                recipeProcess.modify(modifyRecipeDto.recipeProcess[i++]) }
     }
 }
