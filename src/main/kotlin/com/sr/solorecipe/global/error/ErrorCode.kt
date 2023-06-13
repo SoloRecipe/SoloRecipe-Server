@@ -11,9 +11,11 @@ enum class ErrorCode(
     UNAUTHORIZED("권한이 없습니다.",401),
 
     DUPLICATED_LIKE("이미 좋아요를 눌렀습니다.", 403),
+
     USER_NOT_FOUND("유저가 존재하지 않습니다.", 404),
     RECIPE_NOT_FOUND("레시피가 존재하지 않습니다.", 404),
     REVIEW_NOT_FOUND("리뷰가 존재하지 않습니다.", 404),
+    REFRESH_TOKEN_NOT_FOUND("유저가 존재하지 않습니다.", 404),
 
 
     DUPLICATED_EMAIL("이미 존재하는 이메일입니다.", 409),
