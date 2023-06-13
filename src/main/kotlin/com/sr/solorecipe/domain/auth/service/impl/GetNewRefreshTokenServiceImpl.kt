@@ -19,12 +19,12 @@ class GetNewRefreshTokenServiceImpl(
             ?: throw ExpiredRefreshTokenException()
         val email = jwtTokenProvider.getTokenSubject(refreshToken)
 
-        val newAccessToken  = jwtTokenProvider.generateAccessToken(email)
+        val newAccessToken = jwtTokenProvider.generateAccessToken(email)
         val newRefreshToken = jwtTokenProvider.generateRefreshToken(email)
         val newAccessExpiredTime = jwtTokenProvider.accessExpiredTime
         val newRefreshExpiredTime = jwtTokenProvider.refreshExpiredTime
 
-        saveRefreshToken(refreshToken, existingRefreshToken.userIdx)
+        saveRefreshToken(newRefreshToken, existingRefreshToken.userIdx)
 
         return TokenDto(
             accessToken = newAccessToken,
