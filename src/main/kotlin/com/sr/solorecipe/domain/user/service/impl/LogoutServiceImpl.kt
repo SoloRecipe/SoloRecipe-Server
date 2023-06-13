@@ -15,7 +15,6 @@ class LogoutServiceImpl(
 ) : LogoutService {
     override fun logoutUser() {
         val currentUser = userUtil.currentUser()
-        val refreshToken = refreshTokenRepository.findByUserIdx(currentUser.idx) ?: throw RefreshTokenNotFoundException()
-        refreshTokenRepository.delete(refreshToken)
+        refreshTokenRepository.deleteById(currentUser.idx)
     }
 }
