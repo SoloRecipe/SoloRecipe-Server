@@ -5,8 +5,10 @@ import com.sr.solorecipe.domain.user.exception.RefreshTokenNotFoundException
 import com.sr.solorecipe.domain.user.service.LogoutService
 import com.sr.solorecipe.domain.user.util.UserUtil
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class LogoutServiceImpl(
     private val userUtil: UserUtil,
     private val refreshTokenRepository: RefreshTokenRepository
