@@ -21,7 +21,8 @@ class ModifyRecipeServiceImpl(
 
         foundRecipe.modify(modifyRecipeDto.name, modifyRecipeDto.thumbnail)
         foundRecipeProcess
-            .map { recipeProcess ->
-                recipeProcess.modify(modifyRecipeDto.recipeProcess[(recipeProcess.idx - 1).toInt()]) }
+            .forEachIndexed { index, recipeProcess ->
+                recipeProcess.modify(modifyRecipeDto.recipeProcess[index])
+            }
     }
 }
